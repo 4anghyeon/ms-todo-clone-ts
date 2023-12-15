@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./styles/TodoListContainer.styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -6,6 +6,8 @@ import TodoList from "./TodoList";
 import { ITodo } from "../../redux/modules/selectedTodoListSlice";
 import TodoContextMenu from "./TodoContextMenu";
 import { useTodoList } from "../../hook/useTodoList";
+// @ts-ignore
+import { v4 as uuidv4 } from "uuid";
 
 const TodoListContainer = () => {
   const selectedCategory = useSelector((state: RootState) => state.todoList);
@@ -37,7 +39,9 @@ const TodoListContainer = () => {
       if (selectedCategory.todoList) {
         index = selectedCategory.todoList.length + 1;
       }
+
       add({
+        id: uuidv4(),
         content: value,
         index,
         isDone: false,
@@ -69,7 +73,9 @@ const TodoListContainer = () => {
           {isContextMenuShow && <TodoContextMenu />}
         </S.TodoWrapper>
       </>
-      <input placeholder="작업 추가" onKeyDown={handleKeydown} />
+      {selectedCategory.type !== "star" && (
+        <input placeholder="작업 추가" onKeyDown={handleKeydown} />
+      )}
     </S.Container>
   );
 };

@@ -1,17 +1,24 @@
 import React, { useEffect } from "react";
 import { ICategory } from "../../redux/modules/categorySlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTodoList } from "../../redux/modules/selectedTodoListSlice";
+import { RootState } from "../../redux/store";
+import { useTodoList } from "../../hook/useTodoList";
 
 const ListRow = ({ category }: { category: ICategory }) => {
+  const selectedTodoList = useSelector((state: RootState) => state.todoList);
   const dispatch = useDispatch();
+  const { findStaredList } = useTodoList();
 
   const onClickCategory = () => {
     dispatch(setSelectedTodoList(category));
   };
 
   useEffect(() => {
-    dispatch(setSelectedTodoList(category));
+    if (selectedTodoList.type === "star") {
+      const stared = findStaredList();
+      dispatch(setSelectedTodoList(stared));
+    } else dispatch(setSelectedTodoList(category));
   }, [category]);
 
   return (

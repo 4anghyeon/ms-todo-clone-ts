@@ -7,12 +7,13 @@ export interface ICategory {
   id: string;
   isEdit: boolean;
   name: string;
+  type: "normal" | "star";
   todoList: Array<ITodo>;
 }
 
 const LOCALSTORAGE_KEY = "to-do-app-data";
 const initialState: Array<ICategory> = JSON.parse(
-  localStorage.getItem(LOCALSTORAGE_KEY) ?? "",
+  localStorage.getItem(LOCALSTORAGE_KEY) ?? "[]",
 );
 
 const categorySlice = createSlice({
@@ -33,6 +34,7 @@ const categorySlice = createSlice({
       state.push({
         id: uuidv4(),
         name: `${defaultName} ${index === 0 ? "" : index}`.trim(),
+        type: "normal",
         isEdit: false,
         todoList: [],
       });
@@ -42,6 +44,7 @@ const categorySlice = createSlice({
     addTodo: (state, action: { type: string; payload: ITodo }) => {
       if (action.payload) {
         const find = state.find(({ id }) => id === action.payload.parentId);
+
         if (find) {
           find.todoList.push(action.payload);
           localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
@@ -50,40 +53,42 @@ const categorySlice = createSlice({
     },
     removeTodo: (
       state,
-      action: { type: string; payload: Pick<ITodo, "parentId" | "index"> },
+      action: { type: string; payload: Pick<ITodo, "parentId" | "id"> },
     ) => {
-      const { parentId, index } = action.payload;
-      const find = state.find((s) => s.id === parentId);
-      if (find) {
-        find.todoList = find.todoList.filter((t) => t.index !== index);
+      const { parentId, id } = action.payload;
+      const findParent = state.find((s) => s.id === parentId);
+      if (findParent) {
+        findParent.todoList = findParent.todoList.filter((t) => t.id !== id);
         localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
       }
     },
-    startTodo: (
+    starTodo: (
       state,
-      action: { type: string; payload: Pick<ITodo, "parentId" | "index"> },
+      action: { type: string; payload: Pick<ITodo, "parentId" | "id"> },
     ) => {
-      const { parentId, index } = action.payload;
-      const find = state.find((s) => s.id === parentId);
-      if (find) {
-        find.todoList[index - 1].star = !find.todoList[index - 1].star;
+      const { parentId, id } = action.payload;
+      const findParent = state.find((s) => s.id === parentId);
+      if (findParent) {
+        const find = findParent.todoList.find((t) => t.id === id);
+        if (find) find.star = !find.star;
         localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
       }
     },
     checkTodo: (
       state,
-      action: { type: string; payload: Pick<ITodo, "parentId" | "index"> },
+      action: { type: string; payload: Pick<ITodo, "parentId" | "id"> },
     ) => {
-      const { parentId, index } = action.payload;
-      const find = state.find((s) => s.id === parentId);
-      if (find) {
-        find.todoList[index - 1].isDone = !find.todoList[index - 1].isDone;
+      const { parentId, id } = action.payload;
+      const findParent = state.find((s) => s.id === parentId);
+      if (findParent) {
+        const find = findParent.todoList.find((t) => t.id === id);
+        if (find) find.isDone = !find.isDone;
         localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
       }
     },
   },
 });
 
-export const { addCategory, addTodo, removeTodo, checkTodo, startTodo } =
+export const { addCategory, addTodo, removeTodo, checkTodo, starTodo } =
   categorySlice.actions;
 export default categorySlice.reducer;

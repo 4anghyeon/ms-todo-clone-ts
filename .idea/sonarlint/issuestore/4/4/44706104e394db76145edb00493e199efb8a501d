@@ -1,0 +1,8 @@
+
+Ltypescript:S1128")Remove this unused import of 'useEffect'.(â—ÜÚ8ßÙ ÛÆ1
+Ntypescript:S1128"+Remove this unused import of 'useSelector'.(¶Á÷å8ÄôÜÆ1
+Qtypescript:S1128")Remove this unused import of 'RootState'.(Ûµñ³úÿÿÿÿ8ÄôÜÆ1
+Qtypescript:S1128")Remove this unused import of 'ICategory'.(÷öÀ¢úÿÿÿÿ8äšÜÆ1
+Ptypescript:S1128"(Remove this unused import of 'starTodo'.(÷öÀ¢úÿÿÿÿ8µ”ÑÜÆ1
+ztypescript:S6847"RNon-interactive elements should not be assigned mouse or keyboard event listeners.(úŠŸÃıÿÿÿÿ8•’ÜÆ1
+‡typescript:S1082"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(úŠŸÃıÿÿÿÿ8•’ÜÆ1

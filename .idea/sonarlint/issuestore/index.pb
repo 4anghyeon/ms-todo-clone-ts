@@ -72,3 +72,5 @@ G
 src/hook/useTodoList.ts,4/a/4aa1951b6d572eb3c5b0b35500f950c4b5dcdb2e
 U
 %src/components/Main/MainContainer.tsx,c/9/c91c309c69f61435ab2ce0baf94763a8398680b1
+\
+,src/components/Main/MainContainer.styled.tsx,9/5/956f33d53b81ead44cdbde827b06f0cef7dafba2

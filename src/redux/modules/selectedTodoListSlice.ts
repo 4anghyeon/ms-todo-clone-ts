@@ -3,13 +3,20 @@ import { ICategory } from "./categorySlice";
 
 export interface ITodo {
   parentId: string;
+  id: string;
   index: number;
   isDone: boolean;
   content: string;
   star: boolean;
 }
 
-const initialState: Partial<ICategory> = {};
+const initialState: ICategory = {
+  id: "star",
+  isEdit: false,
+  name: "중요",
+  type: "star",
+  todoList: [],
+};
 
 const selectedTodoListSlice = createSlice({
   name: "todos",
