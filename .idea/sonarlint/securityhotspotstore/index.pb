@@ -52,8 +52,6 @@ k
 ;src/components/TodoList/styles/TodoListContainer.styled.tsx,6/2/62209792116e0898a03e109511f02e4eada23673
 R
 "src/redux/modules/categorySlice.ts,7/d/7d7ae0afafa6e0238f2f7bd9cd6ea5f3c0625e7f
-R
-"src/redux/modules/todoListSlice.ts,e/a/ea99f9d5cffa203f7b1b7e5b4745443aef9cd4c9
 T
 $src/components/TodoList/TodoList.tsx,4/9/4912383975f13e52b2b47ab03ed205b2a5d4757c
 S
@@ -70,3 +68,7 @@ c
 +src/components/TodoList/TodoContextMenu.tsx,6/2/6274190f6a5a7b63e1e33310be2716e5ae36a309
 U
 %src/redux/modules/contextMenuSlice.ts,b/8/b88471630e8e6efb0c1c47754bdcb84c3827161c
+G
+src/hook/useTodoList.ts,4/a/4aa1951b6d572eb3c5b0b35500f950c4b5dcdb2e
+U
+%src/components/Main/MainContainer.tsx,c/9/c91c309c69f61435ab2ce0baf94763a8398680b1

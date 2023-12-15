@@ -41,11 +41,33 @@ const categorySlice = createSlice({
     },
     addTodo: (state, action: { type: string; payload: ITodo }) => {
       if (action.payload) {
-        const find = state.find((id) => action.payload.parentId);
+        const find = state.find(({ id }) => id === action.payload.parentId);
         if (find) {
           find.todoList.push(action.payload);
           localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
         }
+      }
+    },
+    removeTodo: (
+      state,
+      action: { type: string; payload: Pick<ITodo, "parentId" | "index"> },
+    ) => {
+      const { parentId, index } = action.payload;
+      const find = state.find((s) => s.id === parentId);
+      if (find) {
+        find.todoList = find.todoList.filter((t) => t.index !== index);
+        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+      }
+    },
+    startTodo: (
+      state,
+      action: { type: string; payload: Pick<ITodo, "parentId" | "index"> },
+    ) => {
+      const { parentId, index } = action.payload;
+      const find = state.find((s) => s.id === parentId);
+      if (find) {
+        find.todoList[index - 1].star = !find.todoList[index - 1].star;
+        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
       }
     },
     checkTodo: (
@@ -56,12 +78,12 @@ const categorySlice = createSlice({
       const find = state.find((s) => s.id === parentId);
       if (find) {
         find.todoList[index - 1].isDone = !find.todoList[index - 1].isDone;
+        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
       }
-
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
     },
   },
 });
 
-export const { addCategory, addTodo, checkTodo } = categorySlice.actions;
+export const { addCategory, addTodo, removeTodo, checkTodo, startTodo } =
+  categorySlice.actions;
 export default categorySlice.reducer;

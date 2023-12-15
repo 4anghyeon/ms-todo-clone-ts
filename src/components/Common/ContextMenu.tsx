@@ -6,7 +6,7 @@ import { hideContextMenu } from "../../redux/modules/contextMenuSlice";
 
 export interface IContextMenu {
   content: string;
-  action: Function;
+  action: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 // @ts-ignore
@@ -25,7 +25,11 @@ const ContextMenu = ({ menuList }: { menuList: Array<IContextMenu> }) => {
       <S.ContextMenuShadow onClick={onClickShadow}></S.ContextMenuShadow>
       <S.ContextMenuContainer $x={x} $y={y}>
         {menuList.map((li) => {
-          return <li key={li.content}>{li.content}</li>;
+          return (
+            <li key={li.content} onClick={li.action}>
+              {li.content}
+            </li>
+          );
         })}
       </S.ContextMenuContainer>
     </>

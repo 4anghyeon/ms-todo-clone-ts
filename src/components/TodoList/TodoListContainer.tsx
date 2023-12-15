@@ -1,18 +1,18 @@
 import React from "react";
 import * as S from "./styles/TodoListContainer.styled";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import TodoList from "./TodoList";
 import { ITodo } from "../../redux/modules/selectedTodoListSlice";
-import { addTodo } from "../../redux/modules/categorySlice";
 import TodoContextMenu from "./TodoContextMenu";
+import { useTodoList } from "../../hook/useTodoList";
 
 const TodoListContainer = () => {
   const selectedCategory = useSelector((state: RootState) => state.todoList);
   const isContextMenuShow = useSelector(
     (state: RootState) => state.contextMenu.isShow,
   );
-  const dispatch = useDispatch();
+  const { add } = useTodoList();
 
   let todoList: Array<ITodo> = [];
   let isDoneTodoList: Array<ITodo> = [];
@@ -37,15 +37,14 @@ const TodoListContainer = () => {
       if (selectedCategory.todoList) {
         index = selectedCategory.todoList.length + 1;
       }
-      dispatch(
-        addTodo({
-          content: value,
-          index,
-          isDone: false,
-          parentId: selectedCategory.id ?? "",
-          star: false,
-        }),
-      );
+      add({
+        content: value,
+        index,
+        isDone: false,
+        parentId: selectedCategory.id ?? "",
+        star: false,
+      });
+
       event.currentTarget.value = "";
     }
   };

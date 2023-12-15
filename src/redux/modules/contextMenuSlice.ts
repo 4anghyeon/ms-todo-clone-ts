@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ITodo } from "./selectedTodoListSlice";
 
 export interface IContextMenu {
   isShow: boolean;
   type: "category" | "todo";
+  todo: ITodo | null;
   x: number;
   y: number;
 }
@@ -10,6 +12,7 @@ export interface IContextMenu {
 const initialState: IContextMenu = {
   isShow: false,
   type: "category",
+  todo: null,
   x: 0,
   y: 0,
 };

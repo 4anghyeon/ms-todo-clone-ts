@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./MainContainer.styled";
-import CategoryMainContainer from "./CategoryList/CategoryMainContainer";
-import TodoListContainer from "./TodoList/TodoListContainer";
+import CategoryMainContainer from "../CategoryList/CategoryMainContainer";
+import TodoListContainer from "../TodoList/TodoListContainer";
 
 const MainContainer = () => {
   return (
