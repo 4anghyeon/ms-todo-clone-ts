@@ -16,8 +16,8 @@ const TodoContextMenu = () => {
       content: "️✅ 완료로 표시",
       action: () => {
         if (todo) {
-          star(todo);
           dispatch(checkTodo(todo));
+          dispatch(hideContextMenu());
         }
       },
     },

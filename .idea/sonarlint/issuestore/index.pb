@@ -74,3 +74,9 @@ U
 %src/components/Main/MainContainer.tsx,c/9/c91c309c69f61435ab2ce0baf94763a8398680b1
 \
 ,src/components/Main/MainContainer.styled.tsx,9/5/956f33d53b81ead44cdbde827b06f0cef7dafba2
+D
+src/styles/theme.tsx,c/e/ce104e96afb82879f21b3b1138da0c495fff0b98
+O
+src/redux/modules/themeSlice.ts,2/6/268e0f8951fe91cf5eeeb4205a355379da1a7232
+c
+3src/components/CategoryList/CategoryContextMenu.tsx,d/1/d124a6bef64079afc0eac7fabe9c496f7533fb41

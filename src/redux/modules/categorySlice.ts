@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { ITodo } from "./selectedTodoListSlice";
 
+export type CategoryType = "normal" | "star";
+
 export interface ICategory {
   id: string;
   isEdit: boolean;
   name: string;
-  type: "normal" | "star";
+  type: CategoryType;
   todoList: Array<ITodo>;
 }
 
@@ -40,6 +42,30 @@ const categorySlice = createSlice({
       });
 
       localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+    },
+    toggleEditCategory: (
+      state,
+      action: { type: string; payload: Pick<ICategory, "id"> },
+    ) => {
+      const find = state.find((s) => s.id === action.payload.id);
+      if (find) find.isEdit = !find.isEdit;
+      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+    },
+    editCategoryName: (
+      state,
+      action: { type: string; payload: { id: string; name: string } },
+    ) => {
+      const find = state.find((s) => s.id === action.payload.id);
+      if (find) find.name = action.payload.name;
+      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+    },
+    deleteCategory: (
+      state,
+      action: { type: string; payload: { id: string } },
+    ) => {
+      state = state.filter((s) => s.id !== action.payload.id);
+      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+      return state;
     },
     addTodo: (state, action: { type: string; payload: ITodo }) => {
       if (action.payload) {
@@ -89,6 +115,14 @@ const categorySlice = createSlice({
   },
 });
 
-export const { addCategory, addTodo, removeTodo, checkTodo, starTodo } =
-  categorySlice.actions;
+export const {
+  addCategory,
+  toggleEditCategory,
+  editCategoryName,
+  deleteCategory,
+  addTodo,
+  removeTodo,
+  checkTodo,
+  starTodo,
+} = categorySlice.actions;
 export default categorySlice.reducer;

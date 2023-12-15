@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as S from "./styles/TodoListContainer.styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -11,9 +11,10 @@ import { v4 as uuidv4 } from "uuid";
 
 const TodoListContainer = () => {
   const selectedCategory = useSelector((state: RootState) => state.todoList);
-  const isContextMenuShow = useSelector(
-    (state: RootState) => state.contextMenu.isShow,
+  const { isShow: isContextMenuShow, type: contextMenuType } = useSelector(
+    (state: RootState) => state.contextMenu,
   );
+  const theme = useSelector((state: RootState) => state.theme);
   const { add } = useTodoList();
 
   let todoList: Array<ITodo> = [];
@@ -66,11 +67,13 @@ const TodoListContainer = () => {
           </S.NotDoneContainer>
           {isDoneTodoList.length > 0 && (
             <S.IsDoneContainer>
-              <h3>완료됨</h3>
+              <S.DoneHeader $theme={theme}>완료됨</S.DoneHeader>
               {<TodoList todoList={isDoneTodoList} />}
             </S.IsDoneContainer>
           )}
-          {isContextMenuShow && <TodoContextMenu />}
+          {isContextMenuShow && contextMenuType === "todo" && (
+            <TodoContextMenu />
+          )}
         </S.TodoWrapper>
       </>
       {selectedCategory.type !== "star" && (

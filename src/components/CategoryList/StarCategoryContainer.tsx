@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as S from "./styles/StarCategoryContainer.styled";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSelectedTodoList } from "../../redux/modules/selectedTodoListSlice";
-import { RootState } from "../../redux/store";
-import { ICategory, starTodo } from "../../redux/modules/categorySlice";
 import { useTodoList } from "../../hook/useTodoList";
 
 const StarCategoryContainer = () => {

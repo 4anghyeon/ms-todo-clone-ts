@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import exp from "node:constants";
+import { ThemeProps } from "../../Main/MainContainer.styled";
 
 export const Container = styled.section`
   width: 100%;
@@ -10,12 +12,12 @@ export const Container = styled.section`
   position: relative;
 
   & h1 {
-    margin-left: 20px;
+    margin: 0.67rem 0 0.67rem 20px;
+    font-size: 2rem;
   }
 
   & input {
     margin: 20px;
-    height: 30px;
     padding: 10px 10px 10px 20px;
     border-radius: 8px;
     font-size: 20px;
@@ -42,9 +44,6 @@ export const NotDoneContainer = styled.section`
 `;
 
 export const IsDoneContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
   & div:first-child {
     text-decoration: line-through;
   }
@@ -71,4 +70,14 @@ export const ShowMenuButton = styled.button`
       display: block;
     }
   }
+`;
+
+export const DoneHeader = styled.h3<ThemeProps>`
+  margin: 10px 0 5px 10px;
+  background: ${({ $theme }) => $theme.subHeaderBackground};
+  color: white;
+  border-radius: 10px;
+  width: fit-content;
+  font-size: 12px;
+  padding: 10px;
 `;
