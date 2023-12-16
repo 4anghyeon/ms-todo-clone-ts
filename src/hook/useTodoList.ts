@@ -8,34 +8,28 @@ import {
   starTodo,
 } from "../redux/modules/categorySlice";
 import { RootState } from "../redux/store";
+import { toast } from "react-toastify";
+import { TOP_CENTER } from "../options/toast-options";
 
 export const useTodoList = () => {
   const dispatch = useDispatch();
   const categoryList = useSelector((state: RootState) => state.category);
 
   const add = (todo: ITodo) => {
-    dispatch(
-      addTodo({
-        id: todo.id,
-        content: todo.content,
-        index: todo.index,
-        isDone: false,
-        parentId: todo.parentId,
-        star: false,
-      }),
-    );
+    dispatch(addTodo(todo));
+    toast.success("추가 되었습니다", TOP_CENTER);
   };
 
   const remove = (todo: ITodo) => {
-    dispatch(removeTodo({ parentId: todo.parentId, id: todo.id }));
+    dispatch(removeTodo({ categoryId: todo.categoryId, id: todo.id }));
   };
 
   const check = (todo: ITodo) => {
-    dispatch(checkTodo({ parentId: todo.parentId, id: todo.id }));
+    dispatch(checkTodo({ categoryId: todo.categoryId, id: todo.id }));
   };
 
   const star = (todo: ITodo) => {
-    dispatch(starTodo({ parentId: todo.parentId, id: todo.id }));
+    dispatch(starTodo({ categoryId: todo.categoryId, id: todo.id }));
   };
 
   const findStaredList = () => {
@@ -74,5 +68,12 @@ export const useTodoList = () => {
     return searchCategory;
   };
 
-  return { add, remove, check, star, findStaredList, findSearchList };
+  return {
+    add,
+    remove,
+    check,
+    star,
+    findStaredList,
+    findSearchList,
+  };
 };

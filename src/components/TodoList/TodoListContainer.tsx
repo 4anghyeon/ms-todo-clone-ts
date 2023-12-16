@@ -46,7 +46,7 @@ const TodoListContainer = () => {
         content: value,
         index,
         isDone: false,
-        parentId: selectedCategory.id ?? "",
+        categoryId: selectedCategory.id ?? "",
         star: false,
       });
 

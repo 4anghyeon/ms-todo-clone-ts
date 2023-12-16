@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import {
   deleteCategory,
-  editCategoryName,
+  editCategory,
   toggleEditCategory,
 } from "../../redux/modules/categorySlice";
 import { hideContextMenu } from "../../redux/modules/contextMenuSlice";

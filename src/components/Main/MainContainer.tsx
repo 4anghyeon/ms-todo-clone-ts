@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { THEME } from "../../styles/theme";
 import { setTheme } from "../../redux/modules/themeSlice";
-import { findAllLetters } from "../../api/todos";
+import { findAllTodos } from "../../api/categoryApi";
 import { initTodos } from "../../redux/modules/categorySlice";
 
 const MainContainer = () => {
@@ -26,7 +26,7 @@ const MainContainer = () => {
   }, [selectedTodoList, focus]);
 
   useEffect(() => {
-    findAllLetters().then((data) => {
+    findAllTodos().then((data) => {
       dispatch(initTodos({ data }));
     });
   }, []);

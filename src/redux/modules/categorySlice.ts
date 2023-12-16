@@ -2,6 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 // @ts-ignore
 import { v4 as uuidv4 } from "uuid";
 import { ITodo } from "./selectedTodoListSlice";
+import {
+  createCategory,
+  removeCategory,
+  updateCategoryName,
+} from "../../api/categoryApi";
+import { createTodo, deleteTodo, updateBooleanTodo } from "../../api/todoApi";
 
 export type CategoryType = "normal" | "star" | "search";
 
@@ -13,11 +19,10 @@ export interface ICategory {
   todoList: Array<ITodo>;
 }
 
-const LOCALSTORAGE_KEY = "to-do-app-data";
 const initialState: Array<ICategory> = [];
 
 const categorySlice = createSlice({
-  name: "todos",
+  name: "category",
   initialState,
   reducers: {
     initTodos: (
@@ -37,15 +42,16 @@ const categorySlice = createSlice({
         index +=
           +filtered[filtered.length - 1].name.replace(defaultName, "") + 1 || 1;
       }
-      state.push({
+
+      const newCategory: ICategory = {
         id: uuidv4(),
         name: `${defaultName} ${index === 0 ? "" : index}`.trim(),
         type: "normal",
         isEdit: false,
         todoList: [],
-      });
-
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+      };
+      state.push(newCategory);
+      createCategory(newCategory);
     },
     toggleEditCategory: (
       state,
@@ -53,67 +59,69 @@ const categorySlice = createSlice({
     ) => {
       const find = state.find((s) => s.id === action.payload.id);
       if (find) find.isEdit = !find.isEdit;
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
     },
-    editCategoryName: (
+    editCategory: (
       state,
       action: { type: string; payload: { id: string; name: string } },
     ) => {
       const find = state.find((s) => s.id === action.payload.id);
       if (find) find.name = action.payload.name;
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+      updateCategoryName(action.payload.id, action.payload.name);
     },
     deleteCategory: (
       state,
       action: { type: string; payload: { id: string } },
     ) => {
       state = state.filter((s) => s.id !== action.payload.id);
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+      removeCategory(action.payload.id);
       return state;
     },
-    addTodo: (state, action: { type: string; payload: ITodo }) => {
+    addTodo: (state, action: { type: string; payload: any }) => {
       if (action.payload) {
-        const find = state.find(({ id }) => id === action.payload.parentId);
-
+        const find = state.find(({ id }) => id === action.payload.categoryId);
         if (find) {
           find.todoList.push(action.payload);
-          localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+          createTodo(action.payload);
         }
       }
     },
     removeTodo: (
       state,
-      action: { type: string; payload: Pick<ITodo, "parentId" | "id"> },
+      action: { type: string; payload: Pick<ITodo, "categoryId" | "id"> },
     ) => {
-      const { parentId, id } = action.payload;
-      const findParent = state.find((s) => s.id === parentId);
+      const { categoryId, id } = action.payload;
+      const findParent = state.find((s) => s.id === categoryId);
       if (findParent) {
         findParent.todoList = findParent.todoList.filter((t) => t.id !== id);
-        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+        deleteTodo(id);
       }
     },
     starTodo: (
       state,
-      action: { type: string; payload: Pick<ITodo, "parentId" | "id"> },
+      action: { type: string; payload: Pick<ITodo, "categoryId" | "id"> },
     ) => {
-      const { parentId, id } = action.payload;
-      const findParent = state.find((s) => s.id === parentId);
+      const { categoryId, id } = action.payload;
+      const findParent = state.find((s) => s.id === categoryId);
       if (findParent) {
         const find = findParent.todoList.find((t) => t.id === id);
-        if (find) find.star = !find.star;
-        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+        if (find) {
+          find.star = !find.star;
+          updateBooleanTodo({ id, attr: "star", value: find.star });
+        }
       }
     },
     checkTodo: (
       state,
-      action: { type: string; payload: Pick<ITodo, "parentId" | "id"> },
+      action: { type: string; payload: Pick<ITodo, "categoryId" | "id"> },
     ) => {
-      const { parentId, id } = action.payload;
-      const findParent = state.find((s) => s.id === parentId);
+      const { categoryId, id } = action.payload;
+      const findParent = state.find((s) => s.id === categoryId);
       if (findParent) {
         const find = findParent.todoList.find((t) => t.id === id);
-        if (find) find.isDone = !find.isDone;
-        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(state));
+        if (find) {
+          find.isDone = !find.isDone;
+          updateBooleanTodo({ id, attr: "isDone", value: find.isDone });
+        }
       }
     },
   },
@@ -123,7 +131,7 @@ export const {
   initTodos,
   addCategory,
   toggleEditCategory,
-  editCategoryName,
+  editCategory,
   deleteCategory,
   addTodo,
   removeTodo,

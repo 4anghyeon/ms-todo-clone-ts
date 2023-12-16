@@ -1,5 +1,5 @@
 import axios from "axios";
 
-export const todoApi = axios.create({
+export const todoAxios = axios.create({
   baseURL: process.env.REACT_APP_SEVER_URL,
 });

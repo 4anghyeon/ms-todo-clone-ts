@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {
-  editCategoryName,
+  editCategory,
   ICategory,
   toggleEditCategory,
 } from "../../redux/modules/categorySlice";
@@ -44,7 +44,7 @@ const ListRow = ({ category }: { category: ICategory }) => {
       | React.FocusEvent<HTMLInputElement>,
   ) => {
     dispatch(
-      editCategoryName({ id: category.id, name: event?.currentTarget.value }),
+      editCategory({ id: category.id, name: event?.currentTarget.value }),
     );
     dispatch(toggleEditCategory({ id: category.id }));
   };

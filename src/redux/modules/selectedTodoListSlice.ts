@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ICategory } from "./categorySlice";
 
 export interface ITodo {
-  parentId: string;
+  categoryId: string;
   id: string;
   index: number;
   isDone: boolean;
