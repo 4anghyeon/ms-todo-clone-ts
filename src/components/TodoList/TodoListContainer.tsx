@@ -1,12 +1,9 @@
 import React from "react";
 import * as S from "./styles/TodoListContainer.styled";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import TodoList from "./TodoList";
-import {
-  ITodo,
-  setSelectedTodoList,
-} from "../../redux/modules/selectedTodoListSlice";
+import { ITodo } from "../../redux/modules/selectedTodoListSlice";
 import TodoContextMenu from "./TodoContextMenu";
 import { useTodoList } from "../../hook/useTodoList";
 // @ts-ignore
@@ -17,7 +14,6 @@ const TodoListContainer = () => {
   const { isShow: isContextMenuShow, type: contextMenuType } = useSelector(
     (state: RootState) => state.contextMenu,
   );
-  const { focus } = useSelector((state: RootState) => state.search);
   const theme = useSelector((state: RootState) => state.theme);
   const { add } = useTodoList();
 

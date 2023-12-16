@@ -5,6 +5,10 @@ import { RootState } from "../../redux/store";
 import { useTodoList } from "../../hook/useTodoList";
 import { hideContextMenu } from "../../redux/modules/contextMenuSlice";
 import { checkTodo } from "../../redux/modules/categorySlice";
+import Swal from "sweetalert2";
+import { DELETE_OPTION } from "../../options/swal-options";
+import { toast } from "react-toastify";
+import { TOP_CENTER } from "../../options/toast-options";
 
 const TodoContextMenu = () => {
   const { todo } = useSelector((state: RootState) => state.contextMenu);
@@ -33,10 +37,16 @@ const TodoContextMenu = () => {
     {
       content: "🗑️ 삭제",
       action: () => {
-        if (todo) {
-          remove(todo);
-          dispatch(hideContextMenu());
-        }
+        dispatch(hideContextMenu());
+        Swal.fire(DELETE_OPTION).then((result) => {
+          if (result.isConfirmed) {
+            if (todo) {
+              remove(todo);
+              dispatch(hideContextMenu());
+              toast.success("삭제되었습니다", TOP_CENTER);
+            }
+          }
+        });
       },
     },
   ];

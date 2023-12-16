@@ -9,7 +9,6 @@ export interface IContextMenu {
   action: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-// @ts-ignore
 const ContextMenu = ({ menuList }: { menuList: Array<IContextMenu> }) => {
   const { x, y } = useSelector((state: RootState) => state.contextMenu);
   const dispatch = useDispatch();

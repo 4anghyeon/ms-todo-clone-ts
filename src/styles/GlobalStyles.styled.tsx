@@ -89,4 +89,11 @@ export const GlobalStyle = createGlobalStyle`
       font-weight: bold;
       src: url('../assets/font/IBM Plex Sans KR/IBMPlexSansKR-Bold.ttf') format('truetype');
   }
+
+  .swal2-icon {
+      margin: 0 auto;
+  }
+  .swal2-popup {
+      padding: 1.25em 0 1.25em
+  }
 `;

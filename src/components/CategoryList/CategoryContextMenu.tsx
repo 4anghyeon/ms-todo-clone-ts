@@ -8,6 +8,10 @@ import {
   toggleEditCategory,
 } from "../../redux/modules/categorySlice";
 import { hideContextMenu } from "../../redux/modules/contextMenuSlice";
+import Swal from "sweetalert2";
+import { DELETE_OPTION } from "../../options/swal-options";
+import { toast } from "react-toastify";
+import { TOP_CENTER } from "../../options/toast-options";
 
 const CategoryContextMenu = () => {
   const dispatch = useDispatch();
@@ -26,10 +30,15 @@ const CategoryContextMenu = () => {
     {
       content: "🗑️ 삭제",
       action: () => {
-        if (category) {
-          dispatch(deleteCategory({ id: category.id }));
-        }
         dispatch(hideContextMenu());
+        Swal.fire(DELETE_OPTION).then((result) => {
+          if (result.isConfirmed) {
+            if (category) {
+              dispatch(deleteCategory({ id: category.id }));
+              toast.success("삭제되었습니다", TOP_CENTER);
+            }
+          }
+        });
       },
     },
   ];
