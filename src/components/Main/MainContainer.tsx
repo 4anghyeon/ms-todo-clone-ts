@@ -15,6 +15,7 @@ const MainContainer = () => {
   const { focus } = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch();
 
+  // 선택한 카테고리 종류에 따라 테마가 바뀐다.
   useEffect(() => {
     if (selectedTodoList.type === "search") {
       dispatch(setTheme(THEME.SEARCH_THEME));
@@ -25,6 +26,7 @@ const MainContainer = () => {
     }
   }, [selectedTodoList, focus]);
 
+  // 데이터 초기화
   useEffect(() => {
     findAllTodos().then((data) => {
       dispatch(initTodos({ data }));

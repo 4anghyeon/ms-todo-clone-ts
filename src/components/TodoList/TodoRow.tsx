@@ -3,7 +3,10 @@ import * as S from "./styles/TodoRow.styled";
 import { CheckCircle, DoneCircle, Star, Stared } from "./styles/TodoRow.styled";
 import { ITodo } from "../../redux/modules/selectedTodoListSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setContextMenu } from "../../redux/modules/contextMenuSlice";
+import {
+  IContextMenuInfo,
+  setContextMenu,
+} from "../../redux/modules/contextMenuSlice";
 import { useTodoList } from "../../hook/useTodoList";
 import { RootState } from "../../redux/store";
 
@@ -16,17 +19,16 @@ const TodoRow = ({ todo }: { todo: ITodo }) => {
   const handleRightClick = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     const rect = event.currentTarget.getBoundingClientRect();
+    const contextMenuInfo: IContextMenuInfo = {
+      isShow: true,
+      type: "todo",
+      todo,
+      category: null,
+      x: event.clientX - rect.x,
+      y: event.clientY - rect.y / 3,
+    };
 
-    dispatch(
-      setContextMenu({
-        isShow: true,
-        type: "todo",
-        todo,
-        category: null,
-        x: event.clientX - rect.x,
-        y: event.clientY - rect.y / 3,
-      }),
-    );
+    dispatch(setContextMenu(contextMenuInfo));
   };
 
   return (

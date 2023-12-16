@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ITodo } from "./selectedTodoListSlice";
 import { ICategory } from "./categorySlice";
 
-export interface IContextMenu {
+export interface IContextMenuInfo {
   isShow: boolean;
   type: "category" | "todo";
   todo: ITodo | null;
@@ -11,7 +11,7 @@ export interface IContextMenu {
   y: number;
 }
 
-const initialState: IContextMenu = {
+const initialState: IContextMenuInfo = {
   isShow: false,
   type: "category",
   todo: null,
@@ -26,7 +26,7 @@ const contextMenuSlice = createSlice({
   reducers: {
     setContextMenu: (
       state,
-      action: { type: string; payload: IContextMenu },
+      action: { type: string; payload: IContextMenuInfo },
     ) => {
       return action.payload;
     },

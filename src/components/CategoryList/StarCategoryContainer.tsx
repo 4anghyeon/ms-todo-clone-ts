@@ -15,8 +15,8 @@ const StarCategoryContainer = () => {
   };
 
   return (
-    <S.Container>
-      <li className={`list-item`} onClick={onClickCategory}>
+    <S.Container onClick={onClickCategory}>
+      <li className={`list-item`}>
         <S.StarHeader>
           <div>
             <S.StarIcon>✩</S.StarIcon>

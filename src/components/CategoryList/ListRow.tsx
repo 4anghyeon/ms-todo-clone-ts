@@ -8,8 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTodoList } from "../../redux/modules/selectedTodoListSlice";
 import { RootState } from "../../redux/store";
 import { useTodoList } from "../../hook/useTodoList";
-import { setContextMenu } from "../../redux/modules/contextMenuSlice";
+import {
+  IContextMenuInfo,
+  setContextMenu,
+} from "../../redux/modules/contextMenuSlice";
 import { unFocusSearch } from "../../redux/modules/searchSlice";
+
+type BlurEventType =
+  | React.KeyboardEvent<HTMLInputElement>
+  | React.FocusEvent<HTMLInputElement>;
 
 const ListRow = ({ category }: { category: ICategory }) => {
   const selectedTodoList = useSelector((state: RootState) => state.todoList);
@@ -26,23 +33,18 @@ const ListRow = ({ category }: { category: ICategory }) => {
     event.preventDefault();
     const rect = event.currentTarget.getBoundingClientRect();
 
-    dispatch(
-      setContextMenu({
-        isShow: true,
-        type: "category",
-        todo: null,
-        category: category,
-        x: event.clientX - rect.x,
-        y: event.clientY - rect.y / 3,
-      }),
-    );
+    const contextMenuInfo: IContextMenuInfo = {
+      isShow: true,
+      type: "category",
+      todo: null,
+      category: category,
+      x: event.clientX - rect.x,
+      y: event.clientY - rect.y / 3,
+    };
+    dispatch(setContextMenu(contextMenuInfo));
   };
 
-  const handleBlur = (
-    event:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.FocusEvent<HTMLInputElement>,
-  ) => {
+  const handleBlur = (event: BlurEventType) => {
     dispatch(
       editCategory({ id: category.id, name: event?.currentTarget.value }),
     );

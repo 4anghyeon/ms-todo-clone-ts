@@ -41,14 +41,16 @@ const TodoListContainer = () => {
         index = selectedCategory.todoList.length + 1;
       }
 
-      add({
+      const newTodo = {
         id: uuidv4(),
         content: value,
         index,
         isDone: false,
         categoryId: selectedCategory.id ?? "",
         star: false,
-      });
+      };
+
+      add(newTodo);
 
       event.currentTarget.value = "";
     }
