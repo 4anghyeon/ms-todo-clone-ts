@@ -14,14 +14,18 @@ export interface ICategory {
 }
 
 const LOCALSTORAGE_KEY = "to-do-app-data";
-const initialState: Array<ICategory> = JSON.parse(
-  localStorage.getItem(LOCALSTORAGE_KEY) ?? "[]",
-);
+const initialState: Array<ICategory> = [];
 
 const categorySlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
+    initTodos: (
+      state,
+      action: { type: string; payload: { data: Array<ICategory> } },
+    ) => {
+      return action.payload.data;
+    },
     addCategory: (state) => {
       // 기본 제목의 목록 혹은 그룹을 만든다.
       // 계속 만들 경우 index가 증가하여 생성된다.
@@ -116,6 +120,7 @@ const categorySlice = createSlice({
 });
 
 export const {
+  initTodos,
   addCategory,
   toggleEditCategory,
   editCategoryName,
