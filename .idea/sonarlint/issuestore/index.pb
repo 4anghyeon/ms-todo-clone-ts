@@ -11,14 +11,10 @@ A
 src/index.tsx,5/a/5ab44fe33ca96299f51ad4778a73e425b92bf439
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
-P
- src/components/MainContainer.tsx,1/5/151126a5cee16baf3bb09bd2eb2bbd1fb5f677d5
 B
 src/redux/store.ts,6/6/6687bbd9e0c8541a6b7e657278fc7e91e52f9a25
 R
 "src/styles/GlobalStyles.styled.tsx,d/9/d9e4190e1d6f79454852c64918e8253b1f7e4a9e
-W
-'src/components/MainContainer.styled.tsx,4/3/43e7fef97d630d66149a29188a7d0ebc3dc0415e
 e
 5src/components/CategoryList/CategoryMainContainer.tsx,5/9/599b8130b3421667946538d42d27306dcb020adc
 s
@@ -80,3 +76,5 @@ O
 src/redux/modules/themeSlice.ts,2/6/268e0f8951fe91cf5eeeb4205a355379da1a7232
 c
 3src/components/CategoryList/CategoryContextMenu.tsx,d/1/d124a6bef64079afc0eac7fabe9c496f7533fb41
+P
+ src/redux/modules/searchSlice.ts,a/4/a47f5568841a0d543366f7be1318b6453ef7d5b8

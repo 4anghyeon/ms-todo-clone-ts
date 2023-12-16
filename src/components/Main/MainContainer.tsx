@@ -10,15 +10,18 @@ import { setTheme } from "../../redux/modules/themeSlice";
 const MainContainer = () => {
   const selectedTodoList = useSelector((state: RootState) => state.todoList);
   const theme = useSelector((state: RootState) => state.theme);
+  const { focus } = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (selectedTodoList.type === "star") {
+    if (selectedTodoList.type === "search") {
+      dispatch(setTheme(THEME.SEARCH_THEME));
+    } else if (selectedTodoList.type === "star") {
       dispatch(setTheme(THEME.STAR_THEME));
     } else {
       dispatch(setTheme(THEME.NORMAL_THEME));
     }
-  }, [selectedTodoList]);
+  }, [selectedTodoList, focus]);
 
   return (
     <S.Container>

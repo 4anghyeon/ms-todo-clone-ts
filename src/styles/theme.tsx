@@ -22,7 +22,16 @@ const STAR_THEME: StyleType = {
   starColor: "#AC395D",
 };
 
+const SEARCH_THEME: StyleType = {
+  background: "#768490",
+  headerColor: "",
+  starColor: "",
+  subHeaderBackground: "",
+  subHeaderColor: "",
+};
+
 export const THEME = {
   NORMAL_THEME,
   STAR_THEME,
+  SEARCH_THEME,
 };

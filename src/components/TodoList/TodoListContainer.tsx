@@ -1,9 +1,12 @@
 import React from "react";
 import * as S from "./styles/TodoListContainer.styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import TodoList from "./TodoList";
-import { ITodo } from "../../redux/modules/selectedTodoListSlice";
+import {
+  ITodo,
+  setSelectedTodoList,
+} from "../../redux/modules/selectedTodoListSlice";
 import TodoContextMenu from "./TodoContextMenu";
 import { useTodoList } from "../../hook/useTodoList";
 // @ts-ignore
@@ -14,6 +17,7 @@ const TodoListContainer = () => {
   const { isShow: isContextMenuShow, type: contextMenuType } = useSelector(
     (state: RootState) => state.contextMenu,
   );
+  const { focus } = useSelector((state: RootState) => state.search);
   const theme = useSelector((state: RootState) => state.theme);
   const { add } = useTodoList();
 
@@ -76,9 +80,10 @@ const TodoListContainer = () => {
           )}
         </S.TodoWrapper>
       </>
-      {selectedCategory.type !== "star" && (
-        <input placeholder="작업 추가" onKeyDown={handleKeydown} />
-      )}
+      {selectedCategory.type !== "star" &&
+        selectedCategory.type !== "search" && (
+          <input placeholder="작업 추가" onKeyDown={handleKeydown} />
+        )}
     </S.Container>
   );
 };

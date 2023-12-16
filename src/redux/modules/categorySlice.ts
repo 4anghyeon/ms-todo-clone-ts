@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { ITodo } from "./selectedTodoListSlice";
 
-export type CategoryType = "normal" | "star";
+export type CategoryType = "normal" | "star" | "search";
 
 export interface ICategory {
   id: string;

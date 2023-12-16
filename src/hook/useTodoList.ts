@@ -54,5 +54,25 @@ export const useTodoList = () => {
     return starCategory;
   };
 
-  return { add, remove, check, star, findStaredList };
+  const findSearchList = (keyword: string) => {
+    let searchList: Array<ITodo> = [];
+    if (keyword.length > 0) {
+      searchList = categoryList
+        .map((c) => c.todoList)
+        .flat()
+        .filter((t) => t.content.includes(keyword));
+    }
+
+    const searchCategory: ICategory = {
+      name: "검색결과",
+      id: "search",
+      isEdit: false,
+      todoList: searchList,
+      type: "search",
+    };
+
+    return searchCategory;
+  };
+
+  return { add, remove, check, star, findStaredList, findSearchList };
 };

@@ -9,6 +9,7 @@ import { setSelectedTodoList } from "../../redux/modules/selectedTodoListSlice";
 import { RootState } from "../../redux/store";
 import { useTodoList } from "../../hook/useTodoList";
 import { setContextMenu } from "../../redux/modules/contextMenuSlice";
+import { unFocusSearch } from "../../redux/modules/searchSlice";
 
 const ListRow = ({ category }: { category: ICategory }) => {
   const selectedTodoList = useSelector((state: RootState) => state.todoList);
@@ -17,6 +18,7 @@ const ListRow = ({ category }: { category: ICategory }) => {
 
   const onClickCategory = () => {
     dispatch(setSelectedTodoList(category));
+    dispatch(unFocusSearch());
   };
 
   // 컨텍스트 메뉴 오픈
