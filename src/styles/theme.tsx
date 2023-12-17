@@ -24,10 +24,10 @@ const STAR_THEME: StyleType = {
 
 const SEARCH_THEME: StyleType = {
   background: "#768490",
-  headerColor: "",
-  starColor: "",
-  subHeaderBackground: "",
-  subHeaderColor: "",
+  headerColor: "#3e4b56",
+  subHeaderColor: "white",
+  subHeaderBackground: "#3e4b56",
+  starColor: "#768490",
 };
 
 export const THEME = {
