@@ -8,7 +8,6 @@ import TodoContextMenu from "./TodoContextMenu";
 import { useTodoList } from "../../hook/useTodoList";
 import { useCategory } from "../../hook/useCategory";
 import { ThreeDots } from "react-loader-spinner";
-import { LoadingContainer } from "./styles/TodoListContainer.styled";
 
 const TodoListContainer = () => {
   const selectedCategory = useSelector((state: RootState) => state.todoList);
@@ -16,7 +15,7 @@ const TodoListContainer = () => {
     (state: RootState) => state.contextMenu,
   );
   const theme = useSelector((state: RootState) => state.theme);
-  const { add } = useTodoList();
+  const { add, isAddPending } = useTodoList();
   const { isCategoryLoading } = useCategory();
 
   let todoList: Array<ITodo> = [];
@@ -60,12 +59,19 @@ const TodoListContainer = () => {
   if (isCategoryLoading)
     return (
       <S.LoadingContainer>
-        <ThreeDots color="white" wrapperStyle={{ "align-item": "center" }} />
+        <ThreeDots color="white" />
       </S.LoadingContainer>
     );
 
   return (
     <S.Container>
+      {isCategoryLoading ||
+        (isAddPending && (
+          <S.LoadingContainer>
+            <ThreeDots color="black" />
+          </S.LoadingContainer>
+        ))}
+
       <S.ShowMenuButton>➡️</S.ShowMenuButton>
       <>
         <header>
@@ -88,7 +94,11 @@ const TodoListContainer = () => {
       </>
       {selectedCategory.type !== "star" &&
         selectedCategory.type !== "search" && (
-          <input placeholder="작업 추가" onKeyDown={handleKeydown} />
+          <input
+            placeholder="작업 추가"
+            onKeyDown={handleKeydown}
+            disabled={isAddPending}
+          />
         )}
     </S.Container>
   );

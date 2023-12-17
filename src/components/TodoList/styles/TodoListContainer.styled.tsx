@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import exp from "node:constants";
 import { ThemeProps } from "../../Main/MainContainer.styled";
 
 export const Container = styled.section`
@@ -83,8 +82,7 @@ export const DoneHeader = styled.h3<ThemeProps>`
 `;
 
 export const LoadingContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 `;

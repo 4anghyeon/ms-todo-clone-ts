@@ -9,7 +9,7 @@ export const CATEGORY_KEY = "category";
 export const useTodoList = () => {
   const { categoryList } = useCategory();
 
-  const { mutate: add } = useMutation({
+  const { isPending: isAddPending, mutate: add } = useMutation({
     mutationFn: async (todo: ITodo) => {
       await createTodo(todo);
     },
@@ -96,6 +96,7 @@ export const useTodoList = () => {
 
   return {
     categoryList,
+    isAddPending,
     add,
     remove,
     check,
