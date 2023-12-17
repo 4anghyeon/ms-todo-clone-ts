@@ -3,7 +3,7 @@ import { ICategory } from "../../hook/useCategory";
 
 export interface ITodo {
   categoryId: string;
-  id: string;
+  id?: string;
   index: number;
   isDone: boolean;
   content: string;

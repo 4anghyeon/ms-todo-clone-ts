@@ -19,7 +19,7 @@ export const useTodoList = () => {
 
   const { mutate: remove } = useMutation({
     mutationFn: async (todo: ITodo) => {
-      await deleteTodo(todo.id);
+      if (todo?.id) await deleteTodo(todo.id);
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [CATEGORY_KEY] });
@@ -28,11 +28,13 @@ export const useTodoList = () => {
 
   const { mutate: check } = useMutation({
     mutationFn: async (todo: ITodo) => {
-      await updateBooleanTodo({
-        id: todo.id,
-        attr: "isDone",
-        value: !todo.isDone,
-      });
+      if (todo?.id) {
+        await updateBooleanTodo({
+          id: todo.id,
+          attr: "isDone",
+          value: !todo.isDone,
+        });
+      }
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [CATEGORY_KEY] });
@@ -41,11 +43,13 @@ export const useTodoList = () => {
 
   const { mutate: star } = useMutation({
     mutationFn: async (todo: ITodo) => {
-      await updateBooleanTodo({
-        id: todo.id,
-        attr: "star",
-        value: !todo.star,
-      });
+      if (todo?.id) {
+        await updateBooleanTodo({
+          id: todo.id,
+          attr: "star",
+          value: !todo.star,
+        });
+      }
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [CATEGORY_KEY] });

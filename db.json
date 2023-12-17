@@ -62,15 +62,7 @@
       "index": 1,
       "isDone": true,
       "categoryId": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
-      "star": true
-    },
-    {
-      "id": "1bd963a6-909e-47ff-b7ba-ef2132b5edac",
-      "content": "sdfdsf",
-      "index": 2,
-      "isDone": true,
-      "categoryId": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
-      "star": true
+      "star": false
     },
     {
       "id": "c7a64412-93c9-42b1-9dff-5f62fbade74a",
@@ -84,7 +76,7 @@
       "id": "e854959a-5417-41ad-afd5-420f9bd2cbf3",
       "content": "sdf",
       "index": 4,
-      "isDone": true,
+      "isDone": false,
       "categoryId": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
       "star": true
     },
@@ -103,6 +95,22 @@
       "isDone": false,
       "categoryId": "wQ1y7Vm",
       "star": false
+    },
+    {
+      "content": "sdfd",
+      "index": 1,
+      "isDone": true,
+      "categoryId": "79c7f754-7684-4fae-950c-995b961526d4",
+      "star": true,
+      "id": "Gd7wxOm"
+    },
+    {
+      "content": "sdf",
+      "index": 2,
+      "isDone": true,
+      "categoryId": "79c7f754-7684-4fae-950c-995b961526d4",
+      "star": false,
+      "id": "YESn1UV"
     }
   ],
   "category": [
@@ -119,6 +127,13 @@
       "type": "normal",
       "isEdit": false,
       "todoList": []
+    },
+    {
+      "name": "제목 없는 목록 1252",
+      "type": "normal",
+      "isEdit": false,
+      "todoList": [],
+      "id": "m7usnMo"
     }
   ]
 }

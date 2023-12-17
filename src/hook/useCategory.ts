@@ -22,7 +22,7 @@ export interface ICategory {
 }
 
 export const useCategory = () => {
-  const { data: categoryList } = useQuery({
+  const { isLoading: isCategoryLoading, data: categoryList } = useQuery({
     queryKey: [CATEGORY_KEY],
     queryFn: findAllTodos,
   });
@@ -55,6 +55,7 @@ export const useCategory = () => {
   });
 
   return {
+    isCategoryLoading,
     categoryList,
     add,
     remove,

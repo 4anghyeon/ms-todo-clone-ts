@@ -81,3 +81,10 @@ export const DoneHeader = styled.h3<ThemeProps>`
   font-size: 12px;
   padding: 10px;
 `;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;

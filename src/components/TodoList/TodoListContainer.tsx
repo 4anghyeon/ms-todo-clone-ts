@@ -6,8 +6,9 @@ import TodoList from "./TodoList";
 import { ITodo } from "../../redux/modules/selectedTodoListSlice";
 import TodoContextMenu from "./TodoContextMenu";
 import { useTodoList } from "../../hook/useTodoList";
-// @ts-ignore
-import { v4 as uuidv4 } from "uuid";
+import { useCategory } from "../../hook/useCategory";
+import { ThreeDots } from "react-loader-spinner";
+import { LoadingContainer } from "./styles/TodoListContainer.styled";
 
 const TodoListContainer = () => {
   const selectedCategory = useSelector((state: RootState) => state.todoList);
@@ -16,6 +17,7 @@ const TodoListContainer = () => {
   );
   const theme = useSelector((state: RootState) => state.theme);
   const { add } = useTodoList();
+  const { isCategoryLoading } = useCategory();
 
   let todoList: Array<ITodo> = [];
   let isDoneTodoList: Array<ITodo> = [];
@@ -42,7 +44,6 @@ const TodoListContainer = () => {
       }
 
       const newTodo = {
-        id: uuidv4(),
         content: value,
         index,
         isDone: false,
@@ -55,6 +56,13 @@ const TodoListContainer = () => {
       event.currentTarget.value = "";
     }
   };
+
+  if (isCategoryLoading)
+    return (
+      <S.LoadingContainer>
+        <ThreeDots color="white" wrapperStyle={{ "align-item": "center" }} />
+      </S.LoadingContainer>
+    );
 
   return (
     <S.Container>
