@@ -1,7 +1,7 @@
 import { todoAxios } from "./axios-instance";
-import { ICategory } from "../redux/modules/categorySlice";
+import { ICategory } from "../hook/useCategory";
 
-export const findAllTodos = async () => {
+export const findAllTodos = async (): Promise<Array<ICategory>> => {
   const { data } = await todoAxios.get("/category?_embed=todoList");
   return data;
 };

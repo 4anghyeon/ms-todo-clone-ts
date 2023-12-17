@@ -4,9 +4,11 @@ import ListRow from "./ListRow";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import CategoryContextMenu from "./CategoryContextMenu";
+import { useTodoList } from "../../hook/useTodoList";
 
 const CategoryListContainer = () => {
-  const categoryList = useSelector((state: RootState) => state.category);
+  const { categoryList } = useTodoList();
+
   const { isShow: isContextMenuShow, type: contextMenuType } = useSelector(
     (state: RootState) => state.contextMenu,
   );
@@ -17,7 +19,7 @@ const CategoryListContainer = () => {
         {isContextMenuShow && contextMenuType === "category" && (
           <CategoryContextMenu />
         )}
-        {categoryList.map((category) => {
+        {categoryList?.map((category) => {
           return <ListRow key={category.id} category={category} />;
         })}
       </S.CategoryContainer>

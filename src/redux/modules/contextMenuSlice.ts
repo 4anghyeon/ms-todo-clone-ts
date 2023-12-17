@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ITodo } from "./selectedTodoListSlice";
-import { ICategory } from "./categorySlice";
+import { ICategory } from "../../hook/useCategory";
 
 export interface IContextMenuInfo {
   isShow: boolean;

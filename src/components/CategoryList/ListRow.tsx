@@ -1,9 +1,4 @@
 import React, { useEffect } from "react";
-import {
-  editCategory,
-  ICategory,
-  toggleEditCategory,
-} from "../../redux/modules/categorySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTodoList } from "../../redux/modules/selectedTodoListSlice";
 import { RootState } from "../../redux/store";
@@ -13,6 +8,8 @@ import {
   setContextMenu,
 } from "../../redux/modules/contextMenuSlice";
 import { unFocusSearch } from "../../redux/modules/searchSlice";
+import * as S from "./styles/ListRow.styled";
+import { ICategory, useCategory } from "../../hook/useCategory";
 
 type BlurEventType =
   | React.KeyboardEvent<HTMLInputElement>
@@ -22,6 +19,7 @@ const ListRow = ({ category }: { category: ICategory }) => {
   const selectedTodoList = useSelector((state: RootState) => state.todoList);
   const dispatch = useDispatch();
   const { findStaredList } = useTodoList();
+  const { updateName } = useCategory();
 
   const onClickCategory = () => {
     dispatch(setSelectedTodoList(category));
@@ -45,10 +43,23 @@ const ListRow = ({ category }: { category: ICategory }) => {
   };
 
   const handleBlur = (event: BlurEventType) => {
-    dispatch(
-      editCategory({ id: category.id, name: event?.currentTarget.value }),
-    );
-    dispatch(toggleEditCategory({ id: category.id }));
+    // dispatch(
+    //   // editCategory({ id: category.id, name: event?.currentTarget.value }),
+    // );
+    // const inputElem = document.getElementById(`input_${category.id}`);
+    // if (inputElem) inputElem.style.display = "block";
+
+    if (category?.id) {
+      updateName({ id: category.id, name: event?.currentTarget.value });
+    }
+
+    const inputElem = document.getElementById(`input_${category.id}`);
+    if (inputElem) {
+      inputElem.style.display = "none";
+    }
+
+    const nameElem = document.getElementById(`name_${category.id}`);
+    if (nameElem) nameElem.style.display = "block";
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -63,24 +74,19 @@ const ListRow = ({ category }: { category: ICategory }) => {
   }, [category]);
 
   return (
-    <div onClick={onClickCategory} onContextMenu={handleRightClick}>
-      <div>
-        {!category.isEdit && (
-          <>
-            <span>📋</span> {category.name}
-          </>
-        )}
-        {category.isEdit && (
-          <input
-            defaultValue={category.name}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            autoFocus={true}
-          />
-        )}
+    <S.Row onClick={onClickCategory} onContextMenu={handleRightClick}>
+      <div id={`name_${category.id}`}>
+        <span>📋</span> {category.name}
       </div>
+      <input
+        id={`input_${category.id}`}
+        defaultValue={category.name}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+        autoFocus={true}
+      />
       <span>{category.todoList.length}</span>
-    </div>
+    </S.Row>
   );
 };
 

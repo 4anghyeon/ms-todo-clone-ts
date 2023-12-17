@@ -35,18 +35,28 @@ const TodoRow = ({ todo }: { todo: ITodo }) => {
     <S.Container onContextMenu={handleRightClick}>
       <div>
         {todo.isDone ? (
-          <DoneCircle onClick={check.bind(null, todo)} $theme={theme} />
+          <DoneCircle onClick={() => check(todo)} $theme={theme} />
         ) : (
-          <CheckCircle onClick={check.bind(null, todo)} $theme={theme} />
+          <CheckCircle onClick={() => check(todo)} $theme={theme} />
         )}
         <S.TodoContent>
           <span>{todo.content}</span>
         </S.TodoContent>
       </div>
       {todo.star ? (
-        <Stared onClick={star.bind(null, todo)} $theme={theme} />
+        <Stared
+          onClick={() => {
+            star(todo);
+          }}
+          $theme={theme}
+        />
       ) : (
-        <Star onClick={star.bind(null, todo)} $theme={theme} />
+        <Star
+          onClick={() => {
+            star(todo);
+          }}
+          $theme={theme}
+        />
       )}
     </S.Container>
   );

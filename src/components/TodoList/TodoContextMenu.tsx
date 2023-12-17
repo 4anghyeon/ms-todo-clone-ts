@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useTodoList } from "../../hook/useTodoList";
 import { hideContextMenu } from "../../redux/modules/contextMenuSlice";
-import { checkTodo } from "../../redux/modules/categorySlice";
 import Swal from "sweetalert2";
 import { DELETE_OPTION } from "../../options/swal-options";
 import { toast } from "react-toastify";
@@ -14,13 +13,14 @@ const TodoContextMenu = () => {
   const { todo } = useSelector((state: RootState) => state.contextMenu);
   const { remove, star } = useTodoList();
   const dispatch = useDispatch();
+  const { check } = useTodoList();
 
   const menuList: Array<IContextMenu> = [
     {
       content: "️✅ 완료로 표시",
       action: () => {
         if (todo) {
-          dispatch(checkTodo(todo));
+          check(todo);
           dispatch(hideContextMenu());
         }
       },

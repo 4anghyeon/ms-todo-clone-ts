@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { THEME } from "../../styles/theme";
 import { setTheme } from "../../redux/modules/themeSlice";
-import { findAllTodos } from "../../api/categoryApi";
-import { initTodos } from "../../redux/modules/categorySlice";
 
 const MainContainer = () => {
   const selectedTodoList = useSelector((state: RootState) => state.todoList);
@@ -25,13 +23,6 @@ const MainContainer = () => {
       dispatch(setTheme(THEME.NORMAL_THEME));
     }
   }, [selectedTodoList, focus]);
-
-  // 데이터 초기화
-  useEffect(() => {
-    findAllTodos().then((data) => {
-      dispatch(initTodos({ data }));
-    });
-  }, []);
 
   return (
     <S.Container>

@@ -57,20 +57,52 @@
       "star": false
     },
     {
-      "id": "af3ca421-7599-4a86-b5e2-2c3a549ee1a7",
-      "content": "test",
-      "index": 1,
-      "isDone": true,
-      "categoryId": "79c7f754-7684-4fae-950c-995b961526d4",
-      "star": true
-    },
-    {
-      "id": "45352329-8b9a-498b-978d-a35e1f7a0937",
-      "content": "sss",
+      "id": "7a85d40e-f16f-4306-ab99-ddf79fd25b68",
+      "content": "sdf",
       "index": 1,
       "isDone": true,
       "categoryId": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
       "star": true
+    },
+    {
+      "id": "1bd963a6-909e-47ff-b7ba-ef2132b5edac",
+      "content": "sdfdsf",
+      "index": 2,
+      "isDone": true,
+      "categoryId": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
+      "star": true
+    },
+    {
+      "id": "c7a64412-93c9-42b1-9dff-5f62fbade74a",
+      "content": "sdfds",
+      "index": 3,
+      "isDone": false,
+      "categoryId": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
+      "star": false
+    },
+    {
+      "id": "e854959a-5417-41ad-afd5-420f9bd2cbf3",
+      "content": "sdf",
+      "index": 4,
+      "isDone": true,
+      "categoryId": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
+      "star": true
+    },
+    {
+      "id": "bd70fddb-5ef3-43be-9364-e39dff395472",
+      "content": "으악",
+      "index": 1,
+      "isDone": false,
+      "categoryId": "a483d786-e396-4022-b723-12d44575568b",
+      "star": false
+    },
+    {
+      "id": "6686feef-94fd-44f6-af16-2a40295a2290",
+      "content": "sdfsdf",
+      "index": 1,
+      "isDone": false,
+      "categoryId": "wQ1y7Vm",
+      "star": false
     }
   ],
   "category": [
@@ -83,28 +115,7 @@
     },
     {
       "id": "a7aa73bc-0fa3-47b0-a93f-acf198ba222e",
-      "name": "제목 없는 목록 1",
-      "type": "normal",
-      "isEdit": false,
-      "todoList": []
-    },
-    {
-      "id": "9bd8a141-4cc4-4d4e-9636-8a3d9455085f",
-      "name": "제목 없는 목록 3222",
-      "type": "normal",
-      "isEdit": false,
-      "todoList": []
-    },
-    {
-      "id": "a483d786-e396-4022-b723-12d44575568b",
-      "name": "제목 없는 목록 3223",
-      "type": "normal",
-      "isEdit": false,
-      "todoList": []
-    },
-    {
-      "id": "a16e20c3-5f05-49ee-949f-5f4e6c0b5981",
-      "name": "제목 없는 목록 3224",
+      "name": "제목 없는 목록 1251",
       "type": "normal",
       "isEdit": false,
       "todoList": []
