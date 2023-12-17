@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# Microsoft To Do App Clone Web
+MicroSoft To Do App을 참조하여 만든 To Do List 페이지.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Deployment
+배포된 사이트는 아래에서 확인이 가능하다.
+https://ms-todo-clone-ts.vercel.app/
 
-## Available Scripts
+## 실행
+```bash
+yarn start
+yarn run json-server
 
-In the project directory, you can run:
+# or
 
-### `yarn start`
+npm run start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 주요 기능
+### To Do Category
+<img src="./public/help/usage1.gif" width="600" />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 오른쪽 클릭, 혹은 더블 클릭으로 Context Menu 오픈
+- 목록 메뉴 추가
+- 목록 메뉴 이름 변경
+- 목록 메뉴 삭제
 
-### `yarn test`
+### To Do
+![](./public/help/usage2.gif)
+- To Do 추가
+- To Do 삭제
+- To Do 완료 체크
+- To Do 중요 표시
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 중요
+<img src="./public/help/usage3.png" width="600" />
 
-### `yarn build`
+- To Do 목록 중 중요로 체크 한 것을 모아 봄
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 검색
+![](./public/help/usage4.gif)
+- 모든 목록 중 입력 키워드의 To Do를 검색
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 반응형
+<img src="./public/help/usage5.gif" height="300" />
